@@ -1,0 +1,41 @@
+{
+  "name": "learning-fullstack",
+  "version": "1.0.0",
+  "description": "Learning Full Stack",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node server.js --ignore public/",
+    "dev": "webpack -wd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmartells1/learning-fullstack-js.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/cmartells1/learning-fullstack-js/issues"
+  },
+  "homepage": "https://github.com/cmartells1/learning-fullstack-js#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.2.7",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/node": "7.x",
+    "@babel/core": "^7.5.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/preset-env": "^7.5.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.0.1",
+    "eslint-plugin-react": "^7.14.2",
+    "nodemon": "^1.19.1",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6"
+  }
+}
