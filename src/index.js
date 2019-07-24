@@ -1,34 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types'
 import ReactDom from 'react-dom';
 
-
-const Header = ({message}) => {
-    return(
-        <h2 className="text-center">
-            {/* Hello React Components!! */}
-            {message}
-         </h2>
-    );
-};
-
-Header.propTypes = {
-    message: PropTypes.string
-};
-
-const App = () => {
-    return (
-        <div className="App">
-            <Header message="Naming Contests"/>
-            <div>
-                ...
-            </div>
-        </div>
-    );
-};
+import App from './components/App'
+import data from './testData';
+console.log(data);
 
 ReactDom.render(
     //React.createElement('h2', null, 'Hello React'),
-    <App />,
+    <App contests = {data.contests}/>,
     document.getElementById('root')
 );
+
