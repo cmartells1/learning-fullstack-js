@@ -1,6 +1,8 @@
 import React from 'react';
-import Header from './Header'
-import ContestPreview from './ContestPreview'
+import axios from 'axios';
+import Header from './Header';
+import ContestPreview from './ContestPreview';
+
 
 //React.createClass
 //Only use this syntax if you need to use state with the component.
@@ -12,10 +14,19 @@ class App extends React.Component {
         this.state={ test: 42}
     }     */
     state = {
-        pageHeader :'Naming Contests'
+        pageHeader :'Naming Contests',
+        contests: this.props.initalContests
     };
     componentDidMount() {
+        //ajax
         //timeres and listeners
+        axios.get('/api/contests')
+            .then(resp => {
+                this.setState({
+                    contests: resp.data.contests
+                });
+            })
+            .catch(console.error)       
     }
 
     componentWillUnmount() {
@@ -27,8 +38,8 @@ class App extends React.Component {
             <div className="App">
                 <Header message={this.state.pageHeader}/>
                 <div>
-                    {this.props.contests.map(contest =>
-                    <ContestPreview {...contest} />)}
+                    {this.state.contests.map(contest =>
+                    <ContestPreview key={contest.id} {...contest} />)}
                 </div>
             </div>
         );
