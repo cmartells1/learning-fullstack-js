@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import Header from './Header';
 import ContestPreview from './ContestPreview';
 
@@ -15,18 +14,18 @@ class App extends React.Component {
     }     */
     state = {
         pageHeader :'Naming Contests',
-        contests: this.props.initalContests
+        contests: this.props.initialContests
     };
     componentDidMount() {
         //ajax
         //timeres and listeners
-        axios.get('/api/contests')
-            .then(resp => {
-                this.setState({
-                    contests: resp.data.contests
-                });
-            })
-            .catch(console.error)       
+        // axios.get('/api/contests')
+        //     .then(resp => {
+        //         this.setState({
+        //             contests: resp.data.contests
+        //         });
+        //     })
+        //     .catch(console.error)       
     }
 
     componentWillUnmount() {
