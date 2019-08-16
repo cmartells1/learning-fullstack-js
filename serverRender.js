@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const getApiUrl = contestId => {
     if(contestId) {
-        `${config.serverUrl}/api/contests/${contestId}`;
+     return `${config.serverUrl}/api/contests/${contestId}`;
     }
     return `${config.serverUrl}/api/contests`;
 };
@@ -24,7 +24,7 @@ const getInitialData = (contestId, apiData) => {
         };
     }
     return {
-        contests: apiData.contests
+        contests:apiData.contests
     };
 };
 

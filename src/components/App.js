@@ -8,7 +8,9 @@ import PropTypes from 'prop-types';
 const pushState = (obj, url) => 
     window.history.pushState(obj, '', url);
 
-
+const onPopState = handler => {
+    window.onpopstate = handler;      
+}
 
 //React.createClass
 //Only use this syntax if you need to use state with the component.
@@ -35,11 +37,17 @@ class App extends React.Component {
         //             contests: resp.data.contests
         //         });
         //     })
-        //     .catch(console.error)       
+        //     .catch(console.error)    
+       onPopState((event) =>{
+          this.setState({
+              currentContestId : (event.state || {}).currentContestId
+          })
+       });
     }
 
     componentWillUnmount() {
         //clear your timers and listeners
+        onPopState(null);
     }
 
     fetchContest = (contestId) => {
@@ -59,6 +67,20 @@ class App extends React.Component {
         //lookup contests
         //this.state.contests[contestId] this gets the id from the contest object
     };
+    fetchContestList = () => {
+        pushState(
+            {currentContestId: null},
+            '/'
+        );
+        api.fetchContestList().then(contests =>{
+            this.setState({                
+                currentContestId: null,
+                contests
+            });
+        });
+        //lookup contests
+        //this.state.contests[contestId] this gets the id from the contest object
+    };
     currentContest (){
         return this.state.contests[this.state.currentContestId];
     }
@@ -72,7 +94,9 @@ class App extends React.Component {
     currentContent() {
         if(this.state.currentContestId) 
         {
-            return <Contest {...this.currentContest()}/>;
+            return <Contest
+                    contestListClick={this.fetchContestList} 
+                    {...this.currentContest()}/>;
         }
 
         return <ContestList
